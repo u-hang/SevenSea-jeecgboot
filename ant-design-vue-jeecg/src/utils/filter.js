@@ -1,6 +1,16 @@
 import Vue from "vue";
 import * as dayjs from "dayjs";
 
+Vue.filter('MillionFormat', function (value) {
+  if (!value) return ''
+  if (value.toString().length > 5) {
+    // var tmpVal=Math.floor(value / 10000)
+    return Math.floor(value / 10000).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,') + '万' //.toFixed(2)
+  } else {
+    return Math.floor(value / 10000)
+  }
+})
+
 Vue.filter('NumberFormat', function (value) {
   if (!value) {
     return '0'
